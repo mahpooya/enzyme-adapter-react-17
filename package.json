@@ -1,7 +1,7 @@
 {
-  "name": "@wojtekmaj/enzyme-adapter-react-17",
-  "version": "0.8.0",
-  "description": "JavaScript Testing utilities for React",
+  "name": "@mahpooya/enzyme-adapter-react-17",
+  "version": "0.8.1",
+  "description": "JavaScript Testing utilities for React (forked for editing react dependency)",
   "homepage": "https://enzymejs.github.io/enzyme/",
   "main": "build",
   "workspaces": [
@@ -11,9 +11,10 @@
     "build": "babel --source-maps=both src -d build",
     "clean": "rimraf build",
     "lint": "eslint src test --ext .js,.jsx",
-    "postinstall": "husky install",
+    "postinstall": "node -e \"if(require('fs').existsSync('.git')){process.exit(1)}\" || husky install",
     "prepack": "yarn clean && yarn build",
-    "prettier": "prettier --check . --cache",
+    "prettier": "prettier --check \"src/**/*.{js,jsx,ts,css,html}\" --cache",
+    "prettier:check": "prettier --check \"src/**/*.{jsx,ts,css,html}\"",
     "test": "yarn lint && yarn prettier"
   },
   "keywords": [
@@ -32,36 +33,37 @@
   ],
   "author": "Jordan Harband <ljharb@gmail.com>",
   "contributors": [
-    "Wojciech Maj <kontakt@wojtekmaj.pl>"
+    "Wojciech Maj <kontakt@wojtekmaj.pl>",
+    "Mahpooya Damavand <mahpooya@gmail.com>"
   ],
   "license": "MIT",
   "dependencies": {
-    "@wojtekmaj/enzyme-adapter-utils": "^0.2.0",
-    "enzyme-shallow-equal": "^1.0.0",
-    "has": "^1.0.0",
-    "prop-types": "^15.7.0",
-    "react-is": "^17.0.0",
-    "react-test-renderer": "^17.0.0"
+    "@mahpooya/enzyme-adapter-utils": "^0.2.2",
+    "enzyme-shallow-equal": "^1.0.5",
+    "has": "^1.0.4",
+    "prop-types": "^15.8.1",
+    "react-is": "^17.0.2",
+    "react-test-renderer": "^17.0.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.15.0",
-    "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
-    "@babel/preset-react": "^7.15.0",
-    "enzyme": "^3.0.0",
-    "eslint": "^8.26.0",
-    "eslint-config-wojtekmaj": "^0.8.3",
-    "husky": "^8.0.0",
-    "prettier": "^2.7.0",
-    "pretty-quick": "^3.1.0",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0",
-    "rimraf": "^3.0.0"
+    "@babel/cli": "^7.23.0",
+    "@babel/core": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "@babel/preset-react": "^7.22.15",
+    "enzyme": "^3.11.0",
+    "eslint": "^8.52.0",
+    "eslint-config-wojtekmaj": "^0.9.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "prettier": "^3.0.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rimraf": "^5.0.5"
   },
   "peerDependencies": {
-    "enzyme": "^3.0.0",
-    "react": "^17.0.0-0",
-    "react-dom": "^17.0.0-0"
+    "enzyme": "^3.11.0",
+    "react": "^17",
+    "react-dom": "^17"
   },
   "publishConfig": {
     "access": "public"
@@ -73,8 +75,19 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/wojtekmaj/enzyme-adapter-react-17.git"
+    "url": "git+https://github.com/mahpooya/enzyme-adapter-react-17.git"
   },
-  "funding": "https://github.com/wojtekmaj/enzyme-adapter-react-17?sponsor=1",
-  "packageManager": "yarn@3.1.0"
+  "funding": "https://github.com/mahpooya/enzyme-adapter-react-17?sponsor=1",
+  "packageManager": "yarn@3.1.0",
+  "lint-staged": {
+    "src/**/*.{jsx,ts,css,html}": [
+      "npm run prettier:check"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/mahpooya/enzyme-adapter-react-17/issues"
+  },
+  "directories": {
+    "test": "test"
+  }
 }
